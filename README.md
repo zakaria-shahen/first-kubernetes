@@ -1,4 +1,4 @@
-## first k8s deployment or cluster. 
+## First kubernetes (k8s) 
 
 
 ### Requirement
@@ -6,11 +6,11 @@
 Make sure to install next dependencies
 
 - Java 21 
-  - SET `JAVA_HOME` to java 21
+  - Set `JAVA_HOME` environment variable to java 21
 - Docker Desktop
-  - Currently, the project running the OracleDB, and redis as containers outside k8s cluster, to simulate the real use case or production environment.
-- minikube (k8s)
-- git
+  - Currently, the project running the OracleDB, and redis as containers outside k8s cluster, to simulate the real  world scenario or production environment.
+- Minikube (k8s)
+- Git
 
 You can use next commands in Windows 11 or 10 to install dependencies
 
@@ -23,8 +23,12 @@ winget install Git.Git
 
 ### How to use 
 
-- open git bash and run next command 
+- Run docker desktop 
+- Starts a local Kubernetes cluster by running next command `minkube start`
+- open `git bash` and run next command
 ```bash
 ./delpoy.sh
 ```
+- Now you are able to access the api via [http://127.0.0.1:8080/api/mooc/health](http://127.0.0.1:8080/api/mooc/health)
+
 
