@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mooc-api
+  namespace: mooc-uat
+  labels:
+    app: mooc-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mooc-api
+  template:
+    metadata:
+      name: mooc-api
+      labels:
+        app: mooc-api
+    spec:
+      containers:
+        - name: mooc-api
+          image: mooc:0.0.1-SNAPSHOT
+          envFrom:
+            - configMapRef:
+                name: mooc-api-cm
+            - secretRef:
+                name: mooc-api-secret
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /api/mooc/health
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /api/mooc/health
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 250m
+              memory: 400M
+            limits:
+              cpu: 500m
+              memory: 800M
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+
+

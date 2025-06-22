@@ -1,3 +1,7 @@
+microservice/mooc-spring-java
+!microservice/mooc-spring-java/dockerfile.sh
+*.tar
+
 HELP.md
 .gradle
 build/
