@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mooc-api-cm
+  namespace: mooc-uat
+data:
+  SPRING_PROFILES_ACTIVE: dev
+  SPRING_DOCKER_COMPOSE_ENABLED: "false"
+  JAVA_TOOL_OPTIONS: "--enable-preview"
