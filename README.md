@@ -27,7 +27,7 @@ winget install Git.Git
 - Starts a local Kubernetes cluster by running next command `minkube start`
 - open `git bash` and run next command
 ```bash
-./delpoy.sh
+./deploy.sh
 ```
 - Now you are able to access the api via [http://127.0.0.1:8080/api/mooc/health](http://127.0.0.1:8080/api/mooc/health)
 
