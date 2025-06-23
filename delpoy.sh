@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Running building mooc microservice docker image by dockerfile.sh..."
-./microservice/mooc-spring-java/dockerfile.sh
+./microservice/dockerfile.sh
 
 echo "Deploying docker devops infrastructure..."
 kubectl apply -f devops
