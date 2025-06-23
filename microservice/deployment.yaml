@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: mooc-api
-          image: mooc:0.0.1-SNAPSHOT
+          image: ghcr.io/zakaria-shahen/first-kubernetes:main
           envFrom:
             - configMapRef:
                 name: mooc-api-cm
@@ -28,24 +28,34 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
+          securityContext:
+            runAsUser: 1001
+#            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - NET_BIND_SERVICE
           livenessProbe:
             httpGet:
               port: 8080
               path: /api/mooc/health
-            initialDelaySeconds: 30
+            initialDelaySeconds: 50
             periodSeconds: 10
           readinessProbe:
             httpGet:
               port: 8080
               path: /api/mooc/health
-            initialDelaySeconds: 30
+            initialDelaySeconds: 50
             periodSeconds: 10
           resources:
             requests:
-              cpu: 250m
+              cpu: 500m
               memory: 400M
             limits:
-              cpu: 500m
+              cpu: 1000m
               memory: 800M
       restartPolicy: Always
   strategy:

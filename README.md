@@ -1,5 +1,12 @@
 ## First kubernetes (k8s) 
 
+### What's new? (Technical)
+
+- Running Java app inside kubernetes 
+- Enabling pods inside the k8s cluster to connect to the DB outside the cluster using  k8s SVC
+- Use ConfigMap and Secret
+- Build Continuous Integration (CI) pipeline using GitHub Action to build and push docker image into GitHub Packages Registry
+
 
 ### Requirement
 
