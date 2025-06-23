@@ -1,8 +1,9 @@
 #!/bin/bash
 
+cd microservice || exit 1
 if [ ! -d "mooc-spring-java" ]; then
     echo "clone mooc microservice project..."
-    git clone https://github.com/zakaria-shahen/mooc-spring-java
+    git clone https://github.com/zakaria-shahen/mooc-spring-java || { exit 1; }
     # upgrade to spring boot 3.2.12
     rm mooc-spring-java/pom.xml
     cp pom.xml_ mooc-spring-java/pom.xml
@@ -22,8 +23,8 @@ else
 fi
 
 cd mooc-spring-java || { echo "mooc-spring-java folder not found!"; exit 1; }
-./mvnw clean spring-boot:build-image -DskipTests -Dspring-boot.run.jvmArguments="--enable-preview"
-cd ../
+./mvnw clean spring-boot:build-image -DskipTests -Dspring-boot.run.jvmArguments="--enable-preview" || exit 1
+cd ../../
 
 echo "Loading docker image into Minikube by Minikube.."
 minikube image load mooc:0.0.1-SNAPSHOT || {
