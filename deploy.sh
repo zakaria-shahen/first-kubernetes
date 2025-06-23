@@ -1,7 +1,10 @@
 #!/bin/bash
 
-echo "Running building mooc microservice docker image by dockerfile.sh..."
-./microservice/dockerfile.sh
+#echo "Clone and building mooc microservice docker image by dockerfile.sh..."
+#./microservice/dockerfile.sh
+
+echo "Running OracleDB and redis by docker compose..."
+docker compose -f microservice/docker-compose.yml up -d || exit 1
 
 echo "Deploying docker devops infrastructure..."
 kubectl apply -f devops/mooc-uat-ns.yaml

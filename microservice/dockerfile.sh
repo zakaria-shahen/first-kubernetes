@@ -12,7 +12,7 @@ else
 fi
 
 echo "Running OracleDB and redis by docker compose..."
-docker compose up -f mooc-spring-java/docker-compose.yml -d
+docker compose -f mooc-spring-java/docker-compose.yml up -d || { exit 1; }
 
 
 if [[ "$JAVA_HOME" == *"21"* ]]; then
@@ -26,9 +26,11 @@ cd mooc-spring-java || { echo "mooc-spring-java folder not found!"; exit 1; }
 ./mvnw clean spring-boot:build-image -DskipTests -Dspring-boot.run.jvmArguments="--enable-preview" || exit 1
 cd ../../
 
+docker tag mooc:0.0.1-SNAPSHOT ghcr.io/zakaria-shahen/first-kubernetes:main
+
 echo "Loading docker image into Minikube by Minikube.."
-minikube image load mooc:0.0.1-SNAPSHOT || {
+minikube image load ghcr.io/zakaria-shahen/first-kubernetes:main || {
   echo -e "fail to load image by Minikube\nLoading docker image into minikube by tar file.." \
-  && echo docker image save -o image.tar mooc:0.0.1-SNAPSHOT  \
+  && echo docker image save -o ghcr.io/zakaria-shahen/first-kubernetes:main  \
   && minikube image load image.tar;
 }

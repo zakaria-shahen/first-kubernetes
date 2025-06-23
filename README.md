@@ -5,12 +5,9 @@
 
 Make sure to install next dependencies
 
-- Java 21 
-  - Set `JAVA_HOME` environment variable to java 21
 - Docker Desktop
   - Currently, the project running the OracleDB, and redis as containers outside k8s cluster, to simulate the real  world scenario or production environment.
 - Minikube (k8s)
-- Git
 
 You can use next commands in Windows 11 or 10 to install dependencies
 
